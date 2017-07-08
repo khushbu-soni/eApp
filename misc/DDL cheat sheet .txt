@@ -1,0 +1,39 @@
+menuitem.type
+	0 - appetizer
+	1-  main dish
+	2 - desserts
+	3 - non alcoholic drinks
+	4 - alcoholic drinks
+staff.roles
+    // 0 - waiter
+    // 1 - kitchen
+    // 2 - manager
+	
+menuitem.available
+	0 - available
+	1 - not available 
+	
+	
+orderitem.comp
+	set null, if comp occurs, set to staff id
+	
+
+order.status
+	null
+	0 - received
+	1- being prepared
+	2 - ready for delivery
+	3 - deliverws
+	
+payment.paymenttype
+	0 - debit card
+	1 - credit card
+	2 - cash
+	
+table.inuse
+	0 - false
+	1 - true
+	
+tabletnotification.description
+	0 -  Help
+	1 - Drink Refill
