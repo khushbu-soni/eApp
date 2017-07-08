@@ -1,2 +1,2 @@
-# restro
-A Pos Application for restaurant
+# eApp
+A Ecommerce solution
