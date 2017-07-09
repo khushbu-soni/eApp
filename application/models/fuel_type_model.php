@@ -10,7 +10,7 @@ class fuel_type_model extends CI_Model{
     function get(){
          // $currency = $this->db->query("select state.*,country.name as country_name from state join country on country.id=state.country_id where state.is_deleted=0")->result();
 
-         $currency = $this->db->query("select * from state where is_deleted=0")->result();
+         $currency = $this->db->query("select * from fuel_type ")->result();
 
         return $currency;
     }

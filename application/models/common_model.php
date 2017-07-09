@@ -105,7 +105,7 @@ class Common_model extends CI_Model
     }
 
     function get_images_by_deal($product_id){
-         $currency = $this->db->query("select * from images where product_id=$product_id")->result();
+         $currency = $this->db->query("select im.product_code,images.* from images join items as im on images.product_id=im.id where product_id=$product_id")->result();
 
 
         return $currency;

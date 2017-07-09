@@ -17,6 +17,103 @@ class product_model extends CI_Model{
         return $currency;
     }
 
+    function getAllData(){
+    $query = $this->db->query("SELECT img.id,img.name as image,im.id,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount,im.description,im.key_benefits,im.key_features from items as im join
+        
+        city_master as cm on  cm.id=im.city_id join
+        state_master as sm on sm.id =cm.state_id  join
+         images as img on img.product_id=im.id join
+        product_type as pt on pt.id=im.product_type_id join
+        make_master as mm on mm.id=im.make_id join
+        model_master as mom on mom.id=im.model_id join
+        fuel_type as fm on fm.id=im.fuel_type join
+        brand_master as bm on bm.id=im.brand_id join
+        AH_master as am on am.id=im.ah_id join
+        warrenty_master as wm on wm.id=warrenty_id join
+
+        prorata_master as pr on pr.id=prorata_id
+        
+        
+   ");
+
+    return $query->result();
+}
+ 
+ function getBySearch($data){
+    // print_r($data);
+    $q="SELECT img.id,img.name as image,im.id,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount,im.description,im.key_benefits,im.key_features from items as im join
+        
+        city_master as cm on  cm.id=im.city_id join
+        state_master as sm on sm.id =cm.state_id  join
+         images as img on img.product_id=im.id join
+        product_type as pt on pt.id=im.product_type_id join
+        make_master as mm on mm.id=im.make_id join
+        model_master as mom on mom.id=im.model_id join
+        fuel_type as fm on fm.id=im.fuel_type join
+        brand_master as bm on bm.id=im.brand_id join
+        AH_master as am on am.id=im.ah_id join
+        warrenty_master as wm on wm.id=warrenty_id join
+
+        prorata_master as pr on pr.id=prorata_id
+       ";
+    if(!empty($data)){
+
+        $q.=" where ";
+         if(!empty($data['fuel']) and $data['fuel']!="Select Fuel Type")
+            $q.=" im.fuel_type=".$data['fuel']." and";
+         if(!empty($data['brand_id']) and $data['brand_id']!="Select Brand")
+             $q.=" im.brand_id=".$data['brand_id']." and";
+         if(!empty($data['ah_id']) and $data['ah_id']!="Select AH")
+           $q.=" im.ah_id=".$data['ah_id']." and";
+             if(!empty($data['warrenty_id']) and $data['warrenty_id']!="Warrenty")
+               $q.=" im.warrenty_id=".$data['warrenty_id']." and";
+    }
+    // rtrim($q," and");
+    $q=substr($q, 0, -3);
+    // echo $q;
+    // $q.=" limit 10";
+
+    $query = $this->db->query($q);
+
+    return $query->result();
+}
+
+function getByFilter($data){
+    $q="SELECT img.id,img.name as image,im.id,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount,im.description,im.key_benefits,im.key_features from items as im join
+        
+        city_master as cm on  cm.id=im.city_id join
+        state_master as sm on sm.id =cm.state_id  join
+         images as img on img.product_id=im.id join
+        product_type as pt on pt.id=im.product_type_id join
+        make_master as mm on mm.id=im.make_id join
+        model_master as mom on mom.id=im.model_id join
+        fuel_type as fm on fm.id=im.fuel_type join
+        brand_master as bm on bm.id=im.brand_id join
+        AH_master as am on am.id=im.ah_id join
+        warrenty_master as wm on wm.id=warrenty_id join
+
+        prorata_master as pr on pr.id=prorata_id
+       ";
+    if(!empty($data)){
+
+        $q.=" where ";
+         if(!empty($data['product_type_id']))
+            $q.=" im.product_type_id=".$data['product_type_id']." and";
+         if(!empty($data['make_id']) and $data['model_id']!="Select Make")
+           $q.=" im.make_id=".$data['make_id']." and";
+         if(!empty($data['model_id']) and $data['model_id']!="Select Model")
+             $q.=" im.model_id=".$data['model_id']." and";
+             
+    }
+    // rtrim($q," and");
+    $q=substr($q, 0, -3);
+    // echo $q;
+    // $q.=" limit 100";
+
+    $query = $this->db->query($q);
+
+    return $query->result();
+}
      function get_images_by_deal($deal_id){
          $currency = $this->db->query("select * from images where deal_id=$deal_id")->result();
 
@@ -55,6 +152,28 @@ function getImageName($id){
         return $currency;
     }
 
+    function getAllById($id){
+        $query = $this->db->query("SELECT im.id,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount ,
+            im.discount,im.description,im.key_benefits,im.key_features,im.recomanded_for from items as im join
+        
+        city_master as cm on  cm.id=im.city_id join
+        state_master as sm on sm.id =cm.state_id  join
+        product_type as pt on pt.id=im.product_type_id join
+        make_master as mm on mm.id=im.make_id join
+        model_master as mom on mom.id=im.model_id join
+        fuel_type as fm on fm.id=im.fuel_type join
+        brand_master as bm on bm.id=im.brand_id join
+        AH_master as am on am.id=im.ah_id join
+        warrenty_master as wm on wm.id=warrenty_id join
+
+        prorata_master as pr on pr.id=prorata_id
+        
+        where im.id=$id
+   ");
+
+    return $query->result();
+    }
+
     function get_by_country($cid){
         // $data=array('id'=>$id);
 
@@ -73,7 +192,7 @@ function getImageName($id){
        // $data = array('id'=>$id);
        // $data = array('name'=>$name,'parent_id'=>$parent_id);
         $this->db->where('id',$id);
-        return $this->db->update('deals', $data);
+        return $this->db->update('items', $data);
     }
 
      function delete($id){

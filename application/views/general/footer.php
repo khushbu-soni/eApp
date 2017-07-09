@@ -14,4 +14,5 @@
 <script src="<?php echo base_url("assets/js/modern.min.js");?>"></script>
 <script src="<?php echo base_url("assets/js/pages/dashboard.js");?>"></script>
 <script src="<?php echo base_url("assets/plugins/dropzone/dropzone.min.js");?>"></script>
+<script src="<?php echo base_url("assets/js/editor.js");?>"></script>
 

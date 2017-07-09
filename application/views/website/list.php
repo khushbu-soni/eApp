@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>BatteryBoss - Responsive Battery Dealer HTML5 Template</title>
+<title>BatteryBoss - India's Leading Car Batteries & Inverters Store </title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/website/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -47,6 +47,7 @@
 
 <!--Header--> 
 <header>
+  <header>
   <div class="default-header">
     <div class="container">
       <div class="row">
@@ -58,7 +59,7 @@
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
               <p class="uppercase_text">For Support Mail us : </p>
-              <a href="mailto:info@example.com">info@example.com</a> </div>
+              <a href="mailto:info@example.com">info@batteryboss.in</a> </div>
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
               <p class="uppercase_text">Service Helpline Call Us: </p>
@@ -87,16 +88,7 @@
       </div>
       <div class="header_wrap">
         <div class="user_login">
-          <ul>
-            <li class="dropdown"> <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle" aria-hidden="true"></i> Jhon Anderson <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="profile-settings.html">Profile Settings</a></li>
-                <li><a href="my-vehicles.html">My Vehicles</a></li>
-                <li><a href="post-vehicle.html">Post a Vehicle</a></li>
-                <li><a href="#">Sign Out</a></li>
-              </ul>
-            </li>
-          </ul>
+           <a href="tel:7588010101">Help:<i class="fa fa-phone" aria-hidden="true"></i>  <i class="fa fa-angle-down" aria-hidden="true"></i>7588010101</a>
         </div>
         <div class="header_search">
           <div id="search_toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
@@ -109,15 +101,15 @@
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
           
-          <li ><a href="<?php echo base_url(); ?>welcome" >Home</a>
+          <li class='active' ><a href="<?php echo base_url(); ?>welcome" >Home</a>
             
           </li>
-          <li><a href="<?php echo base_url(); ?>about">About Us</a></li>
+          <li><a href="<?php echo base_url()?>about">About Us</a></li>
            <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop By Brands</a>
             
           </li>
          
-           <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop By Batterys</a>
+           <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop By Cars</a>
             
           </li>
           <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">FAQ's</a>
@@ -127,13 +119,13 @@
             
           </li>
           
-        
         </ul>
       </div>
     </div>
   </nav>
   <!-- Navigation end --> 
   
+</header>
 </header>
 <!-- /Header --> 
 
@@ -179,157 +171,47 @@
             </form>
           </div>
         </div>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-            <div class="label_icon">New</div>
-            <div class="compare_item">
-              <div class="checkbox">
-                <input type="checkbox" value="" id="compare22">
-                <label for="compare22">Compare</label>
-              </div>
-            </div>
+        <?php if(empty($items)){?>
+        <div class="alert alert-error">No Records Found</div>
+        <?php }?>
+        <?php foreach($items as $junk){?>
+        <div class="product-listing-m gray-bg lazy">
+          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/battries/<?php echo $junk->image;?>" class="img-responsive" alt="image" /> </a>
           </div>
+
           <div class="product-listing-content">
-            <h5><a href="#">Battery Name Text</a></h5>
-            <p class="list-price">$90,000</p>
-            <ul>
-              <li><i class="fa fa-road" aria-hidden="true"></i>0,000 km</li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>5 seats</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-              <li><i class="fa fa-Battery" aria-hidden="true"></i>Diesel</li>
+            <h5><a href="#"><?php echo $junk->product_code?></a></h5>
+            <p class="list-price"><?php echo "Rs. ".round($junk->mrp,2)?></p>
+            <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <td>Capacity:<?php echo $junk->AH?></td>
+                <td>Brand:<?php echo $junk->brand?></td>
+                <td>Product Type:<?php echo $junk->product_type?></td>
+              </tr>
+              <tr>
+                <td colspan="2">With Old Battery: Rs.<?php echo $junk->with_old_battery_mrp?></td>
+                <td>Without Old Battery:Rs.<?php echo $junk->without_old_battery_mrp?></td>
+              </tr>
+              <tr>
+                <td colspan="3">Warrenty: <?php echo $junk->warrenty+$junk->prorata?> Months (<?php echo $junk->warrenty ?> Months Free + <?php echo $junk->prorata?> Montsh ProRata)</td>
+              </tr>
+            </table>
+            </div>
+            <ul><!-- 
+              <li><i class="fa fa-battery" aria-hidden="true"></i><?php echo $junk->AH." AH"?></li>
+              <li><i class="fa fa-tachometer" aria-hidden="true"></i>Brand:<?php echo $junk->brand?></li>
+              <li><i class="fa fa-user" aria-hidden="true"></i>Type<?php echo $junk->product_type?></li> 
+              <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $junk->warrenty+$junk->prorata?>Months(<?php echo $junk->warrenty?>Months Free<?php echo $junk->prorata?> Months Pro Rata)</li>
+              <li><i class="fa fa-battery" aria-hidden="true"></i>Diesel</li>
               <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-            </ul>
-            <a href="#" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
+             --></ul>
+            <a href="<?php echo base_url();?>details?id=<?php echo $junk->id;?>" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $junk->state ?>,<?php echo $junk->city ?></span></div>
           </div>
         </div>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-            <div class="label_icon">New</div>
-            <div class="compare_item">
-              <div class="checkbox">
-                <input type="checkbox" value="" id="compare23">
-                <label for="compare23">Compare</label>
-              </div>
-            </div>
-          </div>
-          <div class="product-listing-content">
-            <h5><a href="#">Battery Name Text</a></h5>
-            <p class="list-price">$90,000</p>
-            <ul>
-              <li><i class="fa fa-road" aria-hidden="true"></i>0,000 km</li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>5 seats</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-              <li><i class="fa fa-Battery" aria-hidden="true"></i>Diesel</li>
-              <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-            </ul>
-            <a href="#" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-          </div>
-        </div>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-            <div class="label_icon">Used</div>
-            <div class="compare_item">
-              <div class="checkbox">
-                <input type="checkbox" value="" id="compare24">
-                <label for="compare24">Compare</label>
-              </div>
-            </div>
-          </div>
-          <div class="product-listing-content">
-            <h5><a href="#">Battery Name Text</a></h5>
-            <p class="list-price">$90,000</p>
-            <ul>
-              <li><i class="fa fa-road" aria-hidden="true"></i>0,000 km</li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>5 seats</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-              <li><i class="fa fa-Battery" aria-hidden="true"></i>Diesel</li>
-              <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-            </ul>
-            <a href="#" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-          </div>
-        </div>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-            <div class="label_icon">New</div>
-            <div class="compare_item">
-              <div class="checkbox">
-                <input type="checkbox" value="" id="compare25">
-                <label for="compare25">Compare</label>
-              </div>
-            </div>
-          </div>
-          <div class="product-listing-content">
-            <h5><a href="#">Battery Name Text</a></h5>
-            <p class="list-price">$90,000</p>
-            <ul>
-              <li><i class="fa fa-road" aria-hidden="true"></i>0,000 km</li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>5 seats</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-              <li><i class="fa fa-Battery" aria-hidden="true"></i>Diesel</li>
-              <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-            </ul>
-            <a href="#" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-          </div>
-        </div>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-            <div class="label_icon">New</div>
-            <div class="compare_item">
-              <div class="checkbox">
-                <input type="checkbox" value="" id="compare26">
-                <label for="compare26">Compare</label>
-              </div>
-            </div>
-          </div>
-          <div class="product-listing-content">
-            <h5><a href="#">Battery Name Text</a></h5>
-            <p class="list-price">$90,000</p>
-            <ul>
-              <li><i class="fa fa-road" aria-hidden="true"></i>0,000 km</li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>5 seats</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-              <li><i class="fa fa-Battery" aria-hidden="true"></i>Diesel</li>
-              <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-            </ul>
-            <a href="#" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-          </div>
-        </div>
-        <div class="product-listing-m gray-bg">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-            <div class="label_icon">New</div>
-            <div class="compare_item">
-              <div class="checkbox">
-                <input type="checkbox" value="" id="compare27">
-                <label for="compare27">Compare</label>
-              </div>
-            </div>
-          </div>
-          <div class="product-listing-content">
-            <h5><a href="#">Battery Name Text</a></h5>
-            <p class="list-price">$90,000</p>
-            <ul>
-              <li><i class="fa fa-road" aria-hidden="true"></i>0,000 km</li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>5 seats</li>
-              <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-              <li><i class="fa fa-Battery" aria-hidden="true"></i>Diesel</li>
-              <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-            </ul>
-            <a href="#" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-          </div>
-        </div>
-        <div class="pagination">
+        <?php }?>
+<!--         <div class="pagination">
           <ul>
             <li class="current">1</li>
             <li><a href="#">2</a></li>
@@ -337,7 +219,7 @@
             <li><a href="#">4</a></li>
             <li><a href="#">5</a></li>
           </ul>
-        </div>
+        </div> -->
       </div>
       
       <!--Side-Bar-->
@@ -347,69 +229,64 @@
             <h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Battery </h5>
           </div>
           <div class="sidebar_filter">
-            <form action="#" method="get">
+            <form action="<?php echo base_url()?>productList/search" method="post">
               <div class="form-group select">
-                <select class="form-control">
-                  <option>Select Location</option>
-                  <option>Location 1</option>
-                  <option>Location 2</option>
-                  <option>Location 3</option>
-                  <option>Location 4</option>
+                <select class="form-control" name="fuel">
+                   <?php foreach($fuel_type as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
                 </select>
               </div>
               <div class="form-group select">
-                <select class="form-control">
+                <select class="form-control" name='brand_id'>
                   <option>Select Brand</option>
-                  <option>Brand 1</option>
-                  <option>Brand 2</option>
-                  <option>Brand 3</option>
-                  <option>Brand 4</option>
+                   <?php foreach($brand as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
                 </select>
               </div>
               <div class="form-group select">
-                <select class="form-control">
-                  <option>Select Model</option>
-                  <option>Series 1</option>
-                  <option>Series 2</option>
-                  <option>Series 3</option>
-                  <option>Series 4</option>
+                <select class="form-control" name="ah_id">
+                  <option>Select AH</option>
+                  <?php foreach($ah as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
                 </select>
               </div>
-              <div class="form-group select">
-                <select class="form-control">
-                  <option>Year of Model </option>
-                  <option>2016</option>
-                  <option>2015</option>
-                  <option>2014</option>
-                  <option>2013</option>
+              <div class="form-group select" >
+                <select class="form-control" name="warrenty_id">
+                  <option>Warrenty </option>
+                  <?php foreach($warrenty as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
                 </select>
               </div>
-              
+              <!-- 
               <div class="form-group">
                   <label class="form-label">Price Range ($)</label>
                   <input id="price_range" type="text" class="span2" value="" data-slider-min="50" data-slider-max="6000" data-slider-step="5" data-slider-value="[1000,5000]"/>
-              </div>
-              <div class="form-group select">
+              </div> -->
+             <!--  <div class="form-group select">
                 <select class="form-control">
                   <option>Type of Battery </option>
                   <option>New Battery</option>
                   <option>Used Battery</option>
                 </select>
-              </div>
+              </div> -->
               <div class="form-group">
                 <button type="submit" class="btn btn-block"><i class="fa fa-search" aria-hidden="true"></i> Search Battery</button>
               </div>
             </form>
           </div>
         </div>
-        <div class="sidebar_widget sell_Battery_quote">
+         <div class="sidebar_widget sell_Battery_quote">
           <div class="white-text div_zindex text-center">
             <h3>Sell Your Battery</h3>
             <p>Request a quote and sell your Battery now!</p>
             <a href="#" class="btn">Request a Quote <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
           <div class="dark-overlay"></div>
-        </div>
-        <div class="sidebar_widget">
+        </div> 
+        <!-- <div class="sidebar_widget">
           <div class="widget_heading">
             <h5><i class="fa fa-Battery" aria-hidden="true"></i> Recently Listed Batterys</h5>
           </div>
@@ -441,7 +318,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
       </aside>
       <!--/Side-Bar--> 
     </div>
@@ -690,5 +567,20 @@
 <!--Slider-JS--> 
 <script src="<?php echo base_url(); ?>assets/website/js/slick.min.js"></script> 
 <script src="<?php echo base_url(); ?>assets/website/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/lazy/jquery.lazy.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/lazy/jquery.lazy.plugins.min.js"></script>
+
+<script type="text/javascript">
+  
+   $('.lazy').Lazy({
+        // your configuration goes here
+        scrollDirection: 'vertical',
+        effect: 'fadeIn',
+        visibleOnly: true,
+        onError: function(element) {
+            console.log('error loading ' + element.data('src'));
+        }
+    });
+</script>
 </body>
 </html>

@@ -72,11 +72,7 @@ class import extends CI_Controller {
         for ($row = 2; $row <= $highestRow; $row++) {                           // Read a row of data into an array                 
             $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
 
-            $data = array(                                                      // Sesuaikan sama nama kolom tabel di database
-                "nama" => $rowData[0][0],
-                "alamat" => $rowData[0][1],
-                "kontak" => $rowData[0][2]
-            );
+            
 
             $state_data=array('name'=>$rowData[0][0]);
           /*  echo "<pre>";
@@ -114,6 +110,12 @@ class import extends CI_Controller {
             $model_data=array(
                                 'name'=>$rowData[0][5],
                                 'make_id'=>$make_id);
+            $search_string=$rowData[0][0].",".",".$rowData[0][1].",".$rowData[0][2]
+                           .",".$rowData[0][3].",".$rowData[0][4].",".$rowData[0][5]
+                           .",".$rowData[0][6].",".$rowData[0][7].",".$rowData[0][7]
+                           .",".$rowData[0][8].",".$rowData[0][9].",".$rowData[0][10]
+                           .",". $rowData[0][11].",".$rowData[0][12].",".$rowData[0][13]
+                          ;;
             $item_data=array(
                                             'state_id'=>$state_id,
                                             'city_id'=>$city_id,
@@ -132,6 +134,7 @@ class import extends CI_Controller {
                                             'with_old_battery_mrp'=>$rowData[0][15],
                                             'without_old_battery_mrp'=>$rowData[0][16],
                                             'discount'=>$rowData[0][17],
+                                            'search_string'=>$search_string
                                             );
 
 

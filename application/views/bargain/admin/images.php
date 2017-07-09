@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <!-- <img id='img-upload' width='50px' height='50px'/> -->
                     <button type="submit" class="btn btn-primary" data-dismiss="modal" >Upload</button>
-                    <a href='<?php echo base_url();?>admin/deal' class="btn btn-default" >Close</a>
+                    <a href='<?php echo base_url();?>admin/dataList' class="btn btn-default" >Close</a>
                 </div> 
                    </form>
                 <table  class="table table-striped" id='example' class="display" cellspacing="0" width="100%">
@@ -123,10 +123,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <?php
                      $i=1;
                      foreach ($images as $junk) {?>
+                    <h3>Battery Product Code:<?php echo $junk->product_code?></h3>
                       
                     <tr>
                       <td><?php echo $i;?></td>
-                      <td><img src='<?php echo base_url();?>assets/bargain/deals/<?php echo $junk->name;?>' width='50px' height='50px'/></td>
+                      <td><img src='<?php echo base_url();?>assets/battries/<?php echo $junk->name;?>' width='50px' height='50px'/></td>
 
                       <!-- <td><a class='btn btn-info' href='<?php  echo base_url()?>admin/merchant/edit?id=<?php echo $junk->id;?>'>Edit</button></a> -->
                       <td><button class='btn btn-danger' onclick='deleteImage(<?php echo $junk->id;?>)'>Delete</button></td>

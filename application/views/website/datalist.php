@@ -71,11 +71,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            <div class="xs tabls">
             <div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
               <div class="panel-heading">
-                <h2>Manage State</h2>
+                <h2>Manage Batteries</h2>
                 <div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
               </div>
               <div class="panel-body no-padding" style="display: block;">
-                 <a type="submit" class="btn btn-sm btn-warning warning_33 pull-right" href="<?php echo base_url();?>admin/dataList/add" >Add</a>
+                 <a type="submit" class="btn btn-sm btn-warning warning_33 pull-right" href="<?php echo base_url();?>admin/dataList/add" ></a>
                <table  class="table table-striped" id='example' class="display" cellspacing="0" width="100%">
                   <thead>
                      <tr>
@@ -98,9 +98,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <th>Mrp (With Battery)</th>
                       <th>Mrp (Without Battery)</th>
                       <th>Discount</th>
-                      <th>View</th>
                       <th>images</th>
-                      <th>details</th>
+                      <!-- <th>details</th> -->
                       <th>Edit</th>
                       <th>Delete</th>
                   </tr>
@@ -131,9 +130,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <td><?php echo $val->with_old_battery_mrp?></td>
                     <td><?php echo $val->without_old_battery_mrp?></td>
                     <td><?php echo $val->discount?></td>
-                    <td>View</td>
                     <td><a class='label label-warning' href='<?php  echo base_url()?>admin/dataList/images?id=<?php echo $val->id;?>'>Images</a>
-                    <td>details</td>
+                    <!-- <td><a class='btn btn-warning' href='<?php  echo base_url()?>admin/dataList/details?id=<?php echo $val->id;?>'>Details</button></td> -->
                     <td><a class='btn btn-info' href='<?php  echo base_url()?>admin/dataList/editdeal?id=<?php echo $val->id;?>'>Edit</button></a>
                       <td><button class='btn btn-danger' onclick='deleteDeal(<?php echo $val->id;?>)'>Delete</button></td>
                     </tr>
@@ -164,9 +162,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <th>Mrp (With Battery)</th>
                       <th>Mrp (Without Battery)</th>
                       <th>Discount</th>
-                      <th>View</th>
                       <th>images</th>
-                      <th>details</th>
+                      <!-- <th>details</th> -->
                       <th>Edit</th>
                       <th>Delete</th>
                   </tr>

@@ -28,8 +28,15 @@ class DataList extends BaseController {
         $this->load->model('town_model', 'town');
         $this->load->model('merchant_model', 'merchant');
         $this->load->model('state_model', 'state');
-        $this->load->model('country_model', 'country');
+        $this->load->model('brand_model', 'brand_model');
+        $this->load->model('producttype_model', 'producttype_model');
         $this->load->model('product_model', 'product_model');
+        $this->load->model('make_model', 'make_model');
+        $this->load->model('model_model', 'model');
+        $this->load->model('fuel_type_model', 'fueltype');
+        $this->load->model('ah_model', 'ah');
+        $this->load->model('warrenty_model', 'warrenty');
+        $this->load->model('pro_rata_model', 'pro_rata');
     }
 
     public function index()
@@ -146,10 +153,17 @@ class DataList extends BaseController {
     public function editdeal(){
         if(isset($_GET)){
             $id=$_GET['id'];
+            $this->data['product_type']=$this->producttype_model->get();
+            $this->data['make']=$this->make_model->get();
+            $this->data['model']=$this->model->get();
             $this->data['state']=$this->state->get();
             $this->data['city']=$this->city->get();
-            $this->data['brand']=$this->brand->get();
+            $this->data['brand']=$this->brand_model->get();
             $this->data['dealtype']=$this->dealtype->get();
+            $this->data['fueltype']=$this->fueltype->get();
+            $this->data['ah']=$this->ah->get();
+            $this->data['warrenty']=$this->warrenty->get();
+            $this->data['pro_rata']=$this->pro_rata->get();
             $this->data['deal']=$this->product_model->get_by_id($id);
         }
         $this->load->view('bargain/admin/edititem', $this->data);
@@ -201,7 +215,8 @@ class DataList extends BaseController {
         
         if($_POST){
             $this->upload_image();
-        $this->common->addImage($_POST);
+            $this->common->addImage($_POST);
+            // echo $this->db->last_query();
         }
         redirect('admin/dataList/images?id='.$_POST['product_id']);
      } 
@@ -209,7 +224,7 @@ class DataList extends BaseController {
         function upload_image(){
         // print_r($_GET);
 
-            $target_dir ="assets/bargain/deals/";
+            $target_dir ="assets/battries/";
             $target_file = $target_dir . basename($_FILES["imgImp"]["name"]);
             echo $target_file;
             $uploadOk = 1;
@@ -233,7 +248,7 @@ class DataList extends BaseController {
     function upload_barcode_image(){
         // print_r($_GET);
 
-            $target_dir ="assets/bargain/deals/barcode/";
+            $target_dir ="assets/battries/barcode/";
             $target_file = $target_dir . basename($_FILES["imgImp"]["name"]);
             echo $target_file;
             $uploadOk = 1;
@@ -287,29 +302,35 @@ class DataList extends BaseController {
         // exit();      
         if($_POST){
         $data=array();
-        $data['name']=$_POST['name'];
-        $data['merchant_id']=$_POST['merchant_id'];
-        $data['country_id']=$_POST['country_id'];
+        $data['product_type_id']=$_POST['product_type_id'];
         $data['state_id']=$_POST['state_id'];
         $data['city_id']=$_POST['city_id'];
-        $data['town_id']=$_POST['town_id'];
-        $data['valid_from']=$_POST['valid_from'];
-        $data['valid_to']=$_POST['valid_to'];
-        $data['url_key']=$_POST['url_key'];
-        $data['visibilty']=$_POST['visibilty'];
-        $data['dealtype_id']=$_POST['dealtype_id'];
-        $data['highlights']=$_POST['highlights'];
-        $data['policies']=$_POST['policies'];
-        $data['SKU']=$_POST['SKU'];
-        $data['about']=$_POST['about'];
+        $data['make_id']=$_POST['make_id'];
+        $data['model_id']=$_POST['model_id'];
+        $data['fuel_type']=$_POST['fuel_type'];
+        $data['brand_id']=$_POST['brand_id'];
+        $data['ah_id']=$_POST['ah_id'];
+        $data['warrenty_id']=$_POST['warrenty_id'];
+        $data['prorata_id']=$_POST['prorata_id'];
+        $data['model_name']=$_POST['model_name'];
+        $data['product_code']=$_POST['product_code'];
+        $data['mrp']=$_POST['mrp'];
+        $data['with_old_battery_mrp']=$_POST['with_old_battery_mrp'];
+        $data['without_old_battery_mrp']=$_POST['without_old_battery_mrp'];
+        $data['discount']=$_POST['discount'];
+        $data['description']=$_POST['description'];
+        $data['key_features']=$_POST['key_features'];
+        $data['key_benefits']=$_POST['key_benefits'];
+        $data['recomanded_for']=$_POST['recomanded_for'];
         
 
         $id=$_POST['id'];
 
-        $this->deal->edit($data,$id);
+        $this->product_model->edit($data,$id);
         // $this->upload_image();
+        echo $this->db->last_query();
         }
-        redirect('admin/deal');
+        redirect('admin/dataList');
 
         // $this->load->view('bargain/admin/editmerchant', $this->data);
     }
@@ -384,7 +405,7 @@ class DataList extends BaseController {
         $id=$_GET['id'];
         $image_name=$this->deal->getImageName($id);
         print_r($image_name);
-        $url='assets/bargain/deals/'.$image_name['name'];
+        $url='assets/battries/'.$image_name['name'];
         unlink($url);
         // exit();
         $this->deal->deleteImage($id);

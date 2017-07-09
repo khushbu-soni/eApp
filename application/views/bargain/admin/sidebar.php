@@ -17,40 +17,41 @@
 									<li><a href="<?php echo base_url();?>admin/fuelType">Fuel Type</a> </li>
 									<li><a href="<?php echo base_url();?>admin/locations">Battery Brand</a> </li>
 									<li><a href="<?php echo base_url();?>admin/dataList">Manage Products</a> </li>
+									<li><a href="<?php echo base_url();?>import">Import</a> </li>
 								</ul>
 						</li>
 						<li class="menu-list" id='category'>
 							<a href="#"><i class="lnr lnr-spell-check"></i>
-								<span>Deals & Offers</span></a>
+								<span>Not Active</span></a>
 								<ul class="sub-menu-list">
-									<li><a href="<?php echo base_url();?>admin/deal/type">Deal Types</a> </li>
+									<!-- <li><a href="<?php echo base_url();?>admin/deal/type">Deal Types</a> </li>
 									<li><a href="<?php echo base_url();?>admin/deal">Manage Deals</a> </li>
 									<li><a href="<?php echo base_url();?>admin/locations">Manage Offers</a> </li>
-									<li><a href="<?php echo base_url();?>admin/locations">Trash</a> </li>
+									<li><a href="<?php echo base_url();?>admin/locations">Trash</a> </li> -->
 								</ul>
 						</li>
 						<li class="menu-list" id='category'>
 							<a href="#"><i class="lnr lnr-spell-check"></i>
-								<span>Sales</span></a>
+								<span>Not Active</span></a>
 								<ul class="sub-menu-list">
-									<li><a href="<?php echo base_url();?>admin/order">Orders</a> </li>
+									<!-- <li><a href="<?php echo base_url();?>admin/order">Orders</a> </li>
 									<li><a href="<?php echo base_url();?>admin/order/delivery">Invoices & Delivery</a> </li>
 									<li><a href="<?php echo base_url();?>admin/order/salesadjustment">Sales Adjustment</a> </li>
 									<li><a href="<?php echo base_url();?>admin/locations">Trash</a> </li>
-									<!-- <li><a href="<?php //echo base_url();?>admin/subscribe">Credit Memos</a> </li> -->
+									 --><!-- <li><a href="<?php //echo base_url();?>admin/subscribe">Credit Memos</a> </li> -->
 								</ul>
 						</li>
 						
 
 						<li class="menu-list" id='customers'>
 							<a href="#"><i class="lnr lnr-user"></i>
-								<span>Customers</span></a>
+								<span>Not Active</span></a>
 								<ul class="sub-menu-list">
-									<li><a href="<?php echo base_url();?>admin/customer">Manage Customers</a> </li>
+									<!-- <li><a href="<?php echo base_url();?>admin/customer">Manage Customers</a> </li>
 									<li><a href="<?php echo base_url();?>admin/customer/group">Customer Groups</a> </li>
 									<li><a href="<?php echo base_url();?>admin/locations">Online Customers</a> </li>
 									<li><a href="<?php echo base_url();?>admin/locations">Trash</a> </li>
-									<li><a href="<?php echo base_url();?>s/dataList">Manage Products</a> </li>
+									<li><a href="<?php echo base_url();?>s/dataList">Manage Products</a> </li> -->
 								</ul>
 						</li>
 						<li class="menu-list"><a href="#"><i class="lnr lnr-cog"></i> <span>Manage Products</span></a>

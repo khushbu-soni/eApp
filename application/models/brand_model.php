@@ -1,5 +1,5 @@
 <?php
-class state_model extends CI_Model{
+class brand_model extends CI_Model{
     //__construct
     public $data;
     //Constructor of abstract_userlogin_model

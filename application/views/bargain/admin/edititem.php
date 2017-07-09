@@ -15,6 +15,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
 <?php echo $header;?>
+<link href="<?php echo base_url(); ?>assets/css/editor.css" rel="stylesheet" type="text/css" />  
 <style type="text/css">
 .btn-file {
     position: relative;
@@ -77,29 +78,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
               </div>
               <div class="panel-body no-padding  " style="display: block;">
-               <form role="form"  method="post"  enctype="multipart/form-data" action='<?php echo base_url()?>admin/deal/edit'>
+               <form role="form"  method="post"  enctype="multipart/form-data" action='<?php echo base_url()?>admin/dataList/edit'>
                 <div class='col-md-3'>
                     <div class="form-group">
+                    <input type="hidden" name="id" value="<?php echo $_GET['id'];?>" />
+                    <span class="help-block"><p id="characterLeft" class="help-block ">Select Product Type</p></span>                    
+                    <select id="product_type_id" name="product_type_id" class="form-control">
+                    <option value="0+">Please Select</option>
+                      <?php foreach ($product_type as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['product_type_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                      <?php }?>
+                    </select>
+                  </div>
+                    <div class="form-group">
                     <span class="help-block"><p id="characterLeft" class="help-block ">Select Make</p></span>                    
-                    <select id="dealtype" name="dealtype_id" class="form-control">
-                      <?php foreach ($dealtype as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['dealtype_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <select id="make_id" name="make_id" class="form-control">
+                      <?php foreach ($make as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['make_id']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
                     <div class="form-group">
                     <span class="help-block"><p id="characterLeft" class="help-block ">Select Model</p></span>                    
-                    <select id="merchant" name="merchant_id" class="form-control">
-                      <?php foreach ($merchants as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['merchant_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <select id="model_id" name="model_id" class="form-control">
+                      <?php foreach ($model as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['model_id']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
                   <div class="form-group">
-                    <span class="help-block"><p id="characterLeft" class="help-block ">Select Fule Type</p></span>                    
-                    <select id="country_id" name="country_id" class="form-control">
-                      <?php foreach ($country as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['country_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <span class="help-block"><p id="characterLeft" class="help-block ">Select Fuel Type</p></span>                    
+                    <select id="fuel_type" name="fuel_type" class="form-control">
+                      <?php foreach ($fueltype as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['fuel_type']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
@@ -126,40 +137,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class='col-md-3'>
                   <div class="form-group">
                     <span class="help-block"><p id="characterLeft" class="help-block ">Select Brand </p></span>                    
-                    <select id="town_id" name="town_id" class="form-control">
-                      <?php foreach ($town as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['town_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <select id="brand_id" name="brand_id" class="form-control">
+                      <?php foreach ($brand as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['brand_id']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
                   <div class="form-group">
                     <span class="help-block"><p id="characterLeft" class="help-block ">Select AH </p></span>                    
-                    <select id="town_id" name="town_id" class="form-control">
-                      <?php foreach ($town as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['town_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <select id="ah_id" name="ah_id" class="form-control">
+                      <?php foreach ($ah as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['ah_id']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
                   <div class="form-group">
                     <span class="help-block"><p id="characterLeft" class="help-block ">Select Warrenty </p></span>                    
-                    <select id="town_id" name="town_id" class="form-control">
-                      <?php foreach ($town as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['town_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <select id="warrenty_id" name="warrenty_id" class="form-control">
+                      <?php foreach ($warrenty as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['warrenty_id']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
                   <div class="form-group">
                     <span class="help-block"><p id="characterLeft" class="help-block ">Select Pro-rata </p></span>                    
-                    <select id="town_id" name="town_id" class="form-control">
-                      <?php foreach ($town as $junk) { ?>
-                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['town_id']) echo "selected" ?>><?php echo $junk->name?></option>
+                    <select id="prorata_id" name="prorata_id" class="form-control">
+                      <?php foreach ($pro_rata as $junk) { ?>
+                      <option value="<?php echo $junk->id;?>" <?php if($junk->id==$deal['prorata_id']) echo "selected" ?>><?php echo $junk->name?></option>
                       <?php }?>
                     </select>
                   </div>
                     
                   <div class="form-group">
-                    <input type="text" class="form-control" id="model_name" name="model_name" placeholder="product_code" value='<?php echo $deal['SKU'];?>' required>
+                    <input type="text" class="form-control" id="model_name" name="model_name" placeholder="model_name" value='<?php echo $deal['model_name'];?>' required>
                         <span class="help-block"><p id="characterLeft" class="help-block ">Model Name</p></span>                    
+                  </div> 
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="product_code" name="product_code" placeholder="product_code" value='<?php echo $deal['product_code'];?>' required>
+                        <span class="help-block"><p id="characterLeft" class="help-block ">product_code</p></span>                    
                   </div> 
                     
                   </div>
@@ -167,33 +182,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                    
                 <div class='col-md-3'>
                         
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="product_code" name="SKU" placeholder="product_code" value='<?php echo $deal['SKU'];?>' required>
-                        <span class="help-block"><p id="characterLeft" class="help-block ">product_code</p></span>                    
-                  </div> 
                 <div class="form-group">
-                    <input type="number" step="0.01" class="form-control" id="discounted_price" name="discounted_price" value='<?php echo $deal['discounted_price'];?>' placeholder="Discounted Price" value='' required>
+                    <input type="number" step="0.01" class="form-control" id="discount" name="discount" value='<?php echo $deal['discount'];?>' placeholder="discount " value='' required>
                         <span class="help-block"><p id="characterLeft" class="help-block ">Discount</p></span>                    
                   </div> 
 
                    <div class="form-group">
-                    <input type="number" step="0.01" class="form-control" id="actual_price" name="actual_price" value='<?php echo $deal['actual_price'];?>' placeholder="Actual Price" value='' required>
+                    <input type="number" step="0.01" class="form-control" id="mrp" name="mrp" value='<?php echo $deal['mrp'];?>' placeholder="Actual Price" value='' required>
                         <span class="help-block"><p id="characterLeft" class="help-block ">Acutal MRP</p></span>                    
                   </div>
                    <div class="form-group">
-                    <input type="number" step="0.01" class="form-control" id="actual_price" name="actual_price" value='<?php echo $deal['actual_price'];?>' placeholder="Actual Price" value='' required>
+                    discount<input type="number" step="0.01" class="form-control" id="without_old_battery_mrpdiscount" name="without_old_battery_mrp" value='<?php echo $deal['without_old_battery_mrp'];?>' placeholder="Actual Price" value='' required>
                         <span class="help-block"><p id="characterLeft" class="help-block "> MRP with old battery</p></span>                    
                   </div> 
                    <div class="form-group">
-                    <input type="number" step="0.01" class="form-control" id="actual_price" name="actual_price" value='<?php echo $deal['actual_price'];?>' placeholder="Actual Price" value='' required>
+                    <input type="number" step="0.01" class="form-control" id="with_old_battery_mrp" name="with_old_battery_mrp" value='<?php echo $deal['with_old_battery_mrp'];?>' placeholder="Actual Price" value='' required>
                         <span class="help-block"><p id="characterLeft" class="help-block "> MRP without old battery</p></span>                    
                   </div> 
+                 <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="description" name='description' placeholder="Description" maxlength="140" rows="7"><?php echo $deal['description']?></textarea>
+                        <span class="help-block"><p id="characterLeft" class="help-block ">Description</p></span>                    
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="key_benefits" name='key_benefits' placeholder="Key Benefits"  rows="7"><?php echo $deal['key_benefits']?></textarea>
+                        <span class="help-block"><p id="characterLeft" class="help-block ">Key Benefits</p></span>                    
+                  </div>
+                 
+                </div>
+                 <div class='col-md-3'>
+                 <!--   <div class="form-group">
+                        <label class="checkbox-inline" for="checkboxes-5">
+                          <input name="gift_option" id="checkboxes-5" value=""  type="checkbox" onclick="$(this).attr('value', this.checked ? 1 : 0)">
+                        <span class="help-block"><p id="allow_merchant_to_edit_add" class="help-block ">Allow To gift</p></span>                    
+      
+                  </div> -->
+                  
+                        
+                  <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="key_features" 
+                    name='key_features' placeholder="Key Features"  rows="7"><?php echo $deal['key_features']?></textarea>
+                        <span class="help-block"><p id="characterLeft" class="help-block ">Key Features</p></span>                    
+                  </div>
+
+                  <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="recomanded_for" name='recomanded_for' placeholder="recomanded_for"  rows="7"></textarea>
+                        <span class="help-block"><p id="characterLeft" class="help-block ">Recomanded For</p></span>                    
+                  </div>
                  
                  
                 </div>
 
                  <div class="form-group">
-                    <a href='<?php echo base_url();?>admin/deal' class="btn btn-default" >Close</a>
+                    <a href='<?php echo base_url();?>admin/dataList' class="btn btn-default" >Close</a>
                     <button type="submit" class="btn btn-primary" data-dismiss="modal" >Save changes</button>
                   </div>
 
@@ -228,7 +268,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    </section>
   
 <?php echo $footer;?>
-
+<script src="<?php echo base_url();?>assets/js/editor.js"></script>
+<script type="text/javascript">
+  
+   // $("#key_features").Editor(); 
+</script>
  
  </script>
 </script>

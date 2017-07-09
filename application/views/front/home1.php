@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="keywords" content="">
 <meta name="description" content="">
-<title>BatteryBoss - Responsive Car Dealer HTML5 Template</title>
+<title>BatteryBoss - India's Leading Car Batteries & Inverters Store</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="<?php echo base_url();?>assets/website/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -114,7 +114,7 @@ $("document").ready(function(){
         success: function (data) {
          data = $.parseJSON(data);
          var li="";
-         var option='<option>Select Make</option>';
+         var option='<option>Select Model</option>';
                    $.each(data, function(k, v) {
                     if(k!='li')
                       option+='<option value='+v.id+'>'+v.name+'</option>';
@@ -289,12 +289,11 @@ $("document").ready(function(){
     <div class="main_bg white-text">
         <h3>Find Your Battery</h3>
         <div class="row">
-          <form action="<?php echo base_url();?>productList" name="search_form" method="get">
+          <form action="<?php echo base_url();?>productList/filter" name="search_form" method="post">
             <div class="form-group col-md-3 col-sm-6">
               <div class="select">
-                <select  id="productType" class="form-control">
+                <select  id="productType" name="product_type_id" class="form-control">
                   <option value="0">Select Product</option>
-                  <?php print_r($product_list)?>
                   <?php foreach ($product_list as $product){?>
                    <option value="<?php echo $product->id;?>"><?php echo $product->name;?></option>
                    <?php  }?>
@@ -303,7 +302,7 @@ $("document").ready(function(){
             </div>
             <div class="form-group col-md-3 col-sm-6">
               <div class="select">
-                <select  id="makeType" class="form-control">
+                <select  id="makeType" name="make_id" class="form-control">
                  <option value="0">Select Make</option>
                   <?php foreach ($make_list as $make){?>
                    <option value="<?php echo $make->id;?>"><?php echo $make->name;?></option>
@@ -313,7 +312,7 @@ $("document").ready(function(){
             </div>
             <div class="form-group col-md-3 col-sm-6">
               <div class="select">
-                <select id='model_list' class="form-control">
+                <select id='model_list' name="model_id" class="form-control">
                    <option value="0">Select Model</option>
                   <?php foreach ($model_list as $model){?>
                    <option value="<?php echo $model->id;?>"><?php echo $model->name;?></option>
