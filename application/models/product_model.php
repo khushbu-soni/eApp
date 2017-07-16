@@ -8,8 +8,7 @@ class product_model extends CI_Model{
     }
 
     function get(){
-         $currency = $this->db->query("select deals.*,state.name as state_name,city.name as city_name,town.name as town_name, dealtypes.name as dealtype,merchants.name as merchant_name, country.name as country_name from deals join merchants on merchants.id = deals.merchant_id join country on country.id =deals.country_id join dealtypes on dealtypes.id=deals.dealtype_id 
-            join  state on state.id = deals.state_id join city on city.id=deals.city_id join town on town.id=deals.town_id")->result();
+         $currency = $this->db->query("select * from items")->result();
 
          /*echo "<pre>";
          print_r($currency);
@@ -67,6 +66,13 @@ class product_model extends CI_Model{
            $q.=" im.ah_id=".$data['ah_id']." and";
              if(!empty($data['warrenty_id']) and $data['warrenty_id']!="Warrenty")
                $q.=" im.warrenty_id=".$data['warrenty_id']." and";
+           if(!empty($data['product_type_id']) and $data['product_type_id']!="Warrenty")
+               $q.=" im.product_type_id=".$data['product_type_id']." and";
+           if(!empty($data['make_id']) and $data['make_id']!="Select Make")
+               $q.=" im.make_id=".$data['make_id']." and";
+           ;
+           if(!empty($data['product_type_id']) and $data['product_type_id']!="Select Product")
+               $q.=" im.product_type_id=".$data['product_type_id']." and";
     }
     // rtrim($q," and");
     $q=substr($q, 0, -3);
@@ -153,11 +159,15 @@ function getImageName($id){
     }
 
     function getAllById($id){
-        $query = $this->db->query("SELECT im.id,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount ,
+
+        
+
+        $query = $this->db->query(" SELECT img.id,img.name as image,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount ,
             im.discount,im.description,im.key_benefits,im.key_features,im.recomanded_for from items as im join
         
         city_master as cm on  cm.id=im.city_id join
         state_master as sm on sm.id =cm.state_id  join
+        images as img on img.product_id=im.id join
         product_type as pt on pt.id=im.product_type_id join
         make_master as mm on mm.id=im.make_id join
         model_master as mom on mom.id=im.model_id join

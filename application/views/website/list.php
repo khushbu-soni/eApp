@@ -174,43 +174,41 @@
         <?php if(empty($items)){?>
         <div class="alert alert-error">No Records Found</div>
         <?php }?>
+        <div class'row'>
         <?php foreach($items as $junk){?>
-        <div class="product-listing-m gray-bg lazy">
-          <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/battries/<?php echo $junk->image;?>" class="img-responsive" alt="image" /> </a>
-          </div>
+            <div class="col-md-4 grid_listing">
+            <div class="product-listing-m gray-bg">
+              <div class="product-listing-img"> <a href="<?php echo base_url();?>details?id=<?php echo $junk->id;?>"><img src="<?php echo base_url(); ?>assets/battries/<?php echo $junk->image;?>" class="img-responsive" alt="image" /> </a>
+                <div class="label_icon">New</div>
+              </div>
+              <div class="product-listing-content">
+                <p><a href="#"><?php echo $junk->product_code?>-<?php echo $junk->AH?> AH</a></p>
+                <p class="list-price"><?php echo "Rs. ".round($junk->mrp,2)?></p>
+                <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
+                <ul class="features_list">
+                <p style="font-size: 13px">
+                <b>With Old Battery:</b> Rs.<?php echo $junk->with_old_battery_mrp?></br>
+                <b>Without Old Battery:</b> Rs.<?php echo $junk->with_old_battery_mrp?></br>
+                <b>Warrenty:</b> <?php echo $junk->warrenty+$junk->prorata?> Months (<?php echo $junk->warrenty ?> Months Free + <?php echo $junk->prorata?> Montsh ProRata)
+                </p>
 
-          <div class="product-listing-content">
-            <h5><a href="#"><?php echo $junk->product_code?></a></h5>
-            <p class="list-price"><?php echo "Rs. ".round($junk->mrp,2)?></p>
-            <div class="table-responsive">
-            <table class="table">
-              <tr>
-                <td>Capacity:<?php echo $junk->AH?></td>
-                <td>Brand:<?php echo $junk->brand?></td>
-                <td>Product Type:<?php echo $junk->product_type?></td>
-              </tr>
-              <tr>
-                <td colspan="2">With Old Battery: Rs.<?php echo $junk->with_old_battery_mrp?></td>
-                <td>Without Old Battery:Rs.<?php echo $junk->without_old_battery_mrp?></td>
-              </tr>
-              <tr>
-                <td colspan="3">Warrenty: <?php echo $junk->warrenty+$junk->prorata?> Months (<?php echo $junk->warrenty ?> Months Free + <?php echo $junk->prorata?> Montsh ProRata)</td>
-              </tr>
-            </table>
+                  <!-- <li><i class="fa fa-road" aria-hidden="true"></i>With Old Battery: Rs.<?php echo $junk->with_old_battery_mrp?></li> -->
+                  <!-- <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li> -->
+                  <!-- <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li> -->
+                  <!-- <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li> -->
+                </ul>
+              </div>
             </div>
-            <ul><!-- 
-              <li><i class="fa fa-battery" aria-hidden="true"></i><?php echo $junk->AH." AH"?></li>
-              <li><i class="fa fa-tachometer" aria-hidden="true"></i>Brand:<?php echo $junk->brand?></li>
-              <li><i class="fa fa-user" aria-hidden="true"></i>Type<?php echo $junk->product_type?></li> 
-              <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo $junk->warrenty+$junk->prorata?>Months(<?php echo $junk->warrenty?>Months Free<?php echo $junk->prorata?> Months Pro Rata)</li>
-              <li><i class="fa fa-battery" aria-hidden="true"></i>Diesel</li>
-              <li><i class="fa fa-superpowers" aria-hidden="true"></i>143 kW</li>
-             --></ul>
-            <a href="<?php echo base_url();?>details?id=<?php echo $junk->id;?>" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            <div class="Battery-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $junk->state ?>,<?php echo $junk->city ?></span></div>
-          </div>
+          </div>  
+          <?php }?>          
+        
         </div>
-        <?php }?>
+        <!-- <?php foreach($items as $junk){?>
+        <div class="product-listing-m gray-bg lazy">
+
+          <div class="row product-listing-content"></div>
+        </div>
+        <?php }?> -->
 <!--         <div class="pagination">
           <ul>
             <li class="current">1</li>
@@ -231,6 +229,9 @@
           <div class="sidebar_filter">
             <form action="<?php echo base_url()?>productList/search" method="post">
               <div class="form-group select">
+              <input name="product_type_id" type="hidden" value="<?php echo $_POST['product_type_id'];?>">
+              <input name="make_id" type="hidden" value="<?php echo $_POST['make_id'];?>">
+              <input name="model_id" type="hidden" value="<?php echo $_POST['model_id'];?>">
                 <select class="form-control" name="fuel">
                    <?php foreach($fuel_type as $junk){?>
                   <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>

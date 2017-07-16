@@ -33,7 +33,9 @@ class Welcome extends BaseController {
 		$this->load->model('deal_model', 'deal');
 		 $this->load->model('make_model'); 
 		 $this->load->model('producttype_model'); 
+		 $this->load->model('product_model'); 
 		 $this->load->model('model_model'); 
+		 $this->load->model('common_model','common'); 
 	}
 
 
@@ -47,8 +49,20 @@ class Welcome extends BaseController {
 		$this->global['make_list']=$this->make_model->get();
         $this->global['product_list']=$this->producttype_model->get();
         $this->global['model_list']=$this->model_model->get();
+        $items=$this->product_model->get();
+        // $data=array();
+        // echo $this->db->last_query();
+        // print_r($items);
+        // foreach ($items as $junk) {
+        // 	$data['name']='600x380.jpg';
+        // 	$data['product_id']=$junk->id;
+        // 	$data['is_deleted']=0;
+        // 	$this->common->addImage($data);
+        // }
         $this->load->view('front/home1',$this->global);
 		// $this->load->view('front/home1');
+
+
 		
 	}
 

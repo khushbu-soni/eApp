@@ -76,6 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div>
               <div class="panel-body no-padding" style="display: block;">
                  <a type="submit" class="btn btn-sm btn-warning warning_33 pull-right" href="<?php echo base_url();?>admin/dataList/add" ></a>
+                 
                <table  class="table table-striped" id='example' class="display" cellspacing="0" width="100%">
                   <thead>
                      <tr>

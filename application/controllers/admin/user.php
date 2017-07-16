@@ -38,7 +38,7 @@ class User extends CI_Controller {
 			
 			redirect('admin/dashboard');
 		} else {
-			echo '0';
+			// echo '0';
 			// $this->load->view('welcome',$this->data);
 			$this->session->set_flashdata('successmsg', "Invald Username Password");
 			redirect('admin');

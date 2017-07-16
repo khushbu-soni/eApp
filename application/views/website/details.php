@@ -153,49 +153,56 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="main_features">
-          <ul>
-            <li> <i class="fa fa-tachometer" aria-hidden="true"></i>
-              <h5><?php echo $items[0]->product_type?></h5>
-              <p>Product Type</p>
-            </li>
-            <li> <i class="fa fa-calendar" aria-hidden="true"></i>
-              <h5><?php echo $items[0]->warrenty?></h5>
-              <p>Warrenty</p>
-            </li>
-            <li> <i class="fa fa-cogs" aria-hidden="true"></i>
-              <h5><?php echo $items[0]->fueltype?></h5>
-              <p>Fuel Type</p>
-            </li>
-            <li> <i class="fa fa-power-off" aria-hidden="true"></i>
-              <h5><?php echo $items[0]->brand?></h5>
-              <p>Brand</p>
-            </li>
-            <li> <i class="fa fa-superpowers" aria-hidden="true"></i>
-              <h5><?php echo $items[0]->model_name?></h5>
-              <p>Model name</p>
-            </li>
-            <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <h5><?php echo $items[0]->make?></h5>
-              <p>Make</p>
-            </li>
-          </ul>
+    <div class="row well">
+      
+        <div class=" col-md-3 listing_images">
+          <div id="listing_images_slider" class="listing_images_slider">
+            <div>
+            <img src="<?php echo base_url();?>assets/battries/<?php echo $items[0]->image;?>" alt="image">
+            </div>
+          </div>
         </div>
-        <div class="listing_more_info">
-          <div class="listing_detail_wrap"> 
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs gray-bg" role="tablist">
+        <div class="col-md-6">
+          <div class="table-responsive"> 
+                  <!--Basic-Info-Table-->
+                  <table class="table  table-striped " style="border-bottom: 1px solid #ddd;">
+                    <tbody>
+                     <tr class="">
+                        <td>with old battery ( Rs. <?php echo round($items[0]->with_old_battery_mrp,2)?> )</td>
+                        <td  class="col-md-3"><input id ="with_old_battery_mrp" type="radio" name="optradio" ></td>
+                        
+                      </tr>
+                      <tr class="">
+                        <td>Without old battery ( Rs.  <?php echo round($items[0]->without_old_battery_mrp,2)?>  )</td>
+                        <td ><input id='without_old_battery_mrp' type="radio" name="optradio" checked=""></td>
+                        
+                      </tr>
+                      <tr >
+                        <td>Mrp</td>
+                        <td class="old_price" id='mrp'> Rs. <?php echo round($items[0]->without_old_battery_mrp,2)?></td>
+                      </tr>
+                      <tr >
+                        <td>qty</td>
+                        <td ><input type="number" value="1" name="qty"/></td>
+                      </tr>
+                      <tr >
+                        <td colspan="2"><div class="form-group">
+                            <input type="submit" value="Add To Cart" class="btn btn-block">
+                          <input type="submit" value="Buy Now" class="btn btn-block">
+                          </div></td>
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+        </div>
+
+      <!--Side-Bar-->
+      <!--/Side-Bar--> 
+      
+    </div>
+    <div class="col-md-12">
+      
               
-              <li role="presentation" class="active"><a href="#specification" aria-controls="specification" role="tab" data-toggle="tab">Basic Info</a></li>
-              <li role="presentation" ><a href="#vehicle-overview " aria-controls="vehicle-overview" role="tab" data-toggle="tab">Battery Overview </a></li>
-            </ul>
-            
-            <!-- Tab panes -->
-            <div class="tab-content"> 
-              <!-- vehicle-overview -->
-              <div role="tabpanel" class="tab-pane " id="vehicle-overview">
                 <h4>Product Description</h4>
                 <p><?php echo $items[0]->description?></p>
                
@@ -223,243 +230,9 @@
                 </p>
                 <h4>Recomanded For</h4>
                 <p><?php echo $items[0]->recomanded_for?></p>
-              </div>
               
-              <!-- Technical-Specification -->
-              <div role="tabpanel" class="tab-pane active" id="specification">
-                <div class="table-responsive"> 
-                  <!--Basic-Info-Table-->
-                  <table>
-                    <tbody>
-                     <tr class="pull-left">
-                        <td>with old battery ( Rs. <?php echo round($items[0]->with_old_battery_mrp,2)?> )</td>
-                        <td ><input id ="with_old_battery_mrp" type="radio" name="optradio" ></td>
-                      </tr>
-                      <tr class="pull-left">
-                        <td>Without old battery ( Rs.  <?php echo round($items[0]->without_old_battery_mrp,2)?>  )</td>
-                        <td ><input id='without_old_battery_mrp' type="radio" name="optradio" checked=""></td>
-                      </tr>
-                      <tr >
-                        <td>Mrp</td>
-                        <td class="old_price" id='mrp'> Rs. <?php echo round($items[0]->without_old_battery_mrp,2)?></td>
-                      </tr>
-                      <tr >
-                        <td>qty</td>
-                        <td ><input type="number" value="1" name="qty"/></td>
-                      </tr>
-                      <tr >
-                        <td ><div class="form-group">
-                            <input type="submit" value="Add To Cart" class="btn btn-block">
-                          </div></td>
-                        <td >
-                          <div class="form-group">
-                          <input type="submit" value="Buy Now" class="btn btn-block">
-                        </div>
-                        </td>
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                  
-                  <!--Technical-Specification-Table-->
-                  <!-- <table>
-                    <thead>
-                      <tr>
-                        <th colspan="2">Technical Specification</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Engine Type</td>
-                        <td>TDCI Diesel Engine</td>
-                      </tr>
-                      <tr>
-                        <td>Engine Description</td>
-                        <td>1.5KW</td>
-                      </tr>
-                      <tr>
-                        <td>No. of Cylinders</td>
-                        <td>4</td>
-                      </tr>
-                      <tr>
-                        <td>Mileage-City</td>
-                        <td>22.4kmpl</td>
-                      </tr>
-                      <tr>
-                        <td>Mileage-Highway</td>
-                        <td>25.83kmpl</td>
-                      </tr>
-                      <tr>
-                        <td>Fuel Tank Capacity</td>
-                        <td>40 (Liters)</td>
-                      </tr>
-                      <tr>
-                        <td>Seating Capacity</td>
-                        <td>5</td>
-                      </tr>
-                      <tr>
-                        <td>Transmission Type</td>
-                        <td>Manual</td>
-                      </tr>
-                    </tbody>
-                  </table> -->
-                </div>
-              </div>
-              
-              <!-- Accessories -->
-              
-            </div>
-          </div>
-          
-          <!--Vehicle-Video-->
-          <div class="video_wrap"><!-- 
-            <h6>Watch Video </h6>
-            <div class="video-box">
-               <iframe class="mfp-iframe" src="https://www.youtube.com/embed/rqSoXtKMU3Q" allowfullscreen></iframe>
-            </div>
-         --></div>
-        
-          <!--Comment-Form-->
-          <!-- <div class="comment_form">
-            <h6>Leave a Comment</h6>
-            <form action="#">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Full Name">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email Address">
-              </div>
-              <div class="form-group">
-                <textarea rows="5" class="form-control" placeholder="Comments"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn" value="Submit Comment">
-              </div>
-            </form>
-          </div> -->
-          <!--/Comment-Form--> 
-          
-        </div>
-   
-      </div>
-      
-      <!--Side-Bar-->
-      <!-- <aside class="col-md-3"> -->
-        
-        
-      <!-- </aside> -->
-      <!--/Side-Bar--> 
     </div>
-    <!-- 
-    <div class="space-20"></div>
-    <div class="divider"></div -->>
-    
-    <!--Similar-Cars-->
-    <!--
-    <div class="similar_cars"> 
-      <h3>Similar Cars</h3>
-      <div class="row">
-        <div class="col-md-3 grid_listing">
-          <div class="product-listing-m gray-bg">
-            <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-              <div class="label_icon">New</div>
-              <div class="compare_item">
-                <div class="checkbox">
-                  <input type="checkbox" value="" id="compare13">
-                  <label for="compare13">Compare</label>
-                </div>
-              </div>
-            </div>
-            <div class="product-listing-content">
-              <h5><a href="#">Car Name</a></h5>
-              <p class="list-price">$89,000</p>
-              <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-              <ul class="features_list">
-                <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 grid_listing">
-          <div class="product-listing-m gray-bg">
-            <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-              <div class="label_icon">New</div>
-              <div class="compare_item">
-                <div class="checkbox">
-                  <input type="checkbox" value="" id="compare20">
-                  <label for="compare20">Compare</label>
-                </div>
-              </div>
-            </div>
-            <div class="product-listing-content">
-              <h5><a href="#">Car Name </a></h5>
-              <p class="list-price">$89,000</p>
-              <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-              <ul class="features_list">
-                <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 grid_listing">
-          <div class="product-listing-m gray-bg">
-            <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-              <div class="label_icon">Used</div>
-              <div class="compare_item">
-                <div class="checkbox">
-                  <input type="checkbox" value="" id="compare15">
-                  <label for="compare15">Compare</label>
-                </div>
-              </div>
-            </div>
-            <div class="product-listing-content">
-              <h5><a href="#">Car Name</a></h5>
-              <p class="list-price">$89,000</p>
-              <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-              <ul class="features_list">
-                <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 grid_listing">
-          <div class="product-listing-m gray-bg">
-            <div class="product-listing-img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/600x380.jpg" class="img-responsive" alt="image" /> </a>
-              <div class="label_icon">Used</div>
-              <div class="compare_item">
-                <div class="checkbox">
-                  <input type="checkbox" value="" id="compare16">
-                  <label for="compare16">Compare</label>
-                </div>
-              </div>
-            </div>
-            <div class="product-listing-content">
-              <h5><a href="#">Car Name</a></h5>
-              <p class="list-price">$89,000</p>
-              <div class="car-location"><span><i class="fa fa-map-marker" aria-hidden="true"></i> Colorado, USA</span></div>
-              <ul class="features_list">
-                <li><i class="fa fa-road" aria-hidden="true"></i>35,000 km</li>
-                <li><i class="fa fa-tachometer" aria-hidden="true"></i>30.000 miles</li>
-                <li><i class="fa fa-calendar" aria-hidden="true"></i>2005 model</li>
-                <li><i class="fa fa-car" aria-hidden="true"></i>Diesel</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    <!--/Similar-Cars--> 
-    
-  </div>
+    </div>
 </section>
 <!--/Listing-detail--> 
 
@@ -844,19 +617,19 @@
 <script type="text/javascript">
   $(document).ready(function(){
     if($('#with_old_battery_mrp').is(':checked')){
-      $('#mrp').html(<?php echo $items[0]->with_old_battery_mrp;?>);
+      $('#mrp').html("Rs."+<?php echo $items[0]->with_old_battery_mrp;?>);
     }
     else if($('#without_old_battery_mrp').is(':checked')){
-      $('#mrp').html(<?php echo $items[0]->without_old_battery_mrp;?>);
+      $('#mrp').html("Rs."+<?php echo $items[0]->without_old_battery_mrp;?>);
     } 
   });
 
   $('#with_old_battery_mrp').change(function(){
-    $('#mrp').html(<?php echo $items[0]->with_old_battery_mrp;?>);
+    $('#mrp').html("Rs."+<?php echo $items[0]->with_old_battery_mrp;?>);
   });
 
   $('#without_old_battery_mrp').change(function(){
-    $('#mrp').html(<?php echo $items[0]->without_old_battery_mrp;?>);
+    $('#mrp').html("Rs."+<?php echo $items[0]->without_old_battery_mrp;?>);
   });
 
 </script>

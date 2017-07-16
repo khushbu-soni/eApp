@@ -159,6 +159,7 @@ $("document").ready(function(){
 </script>
 
 <!--Header-->
+
 <header>
   <div class="default-header">
     <div class="container">
@@ -185,7 +186,15 @@ $("document").ready(function(){
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
               </ul>
             </div>
-            <div class="login_btn"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
+            <div class="login_btn">
+              
+              <select  id="city" name="city" class="form-control">
+                  <!-- <option value="0">Select city</option> -->
+                  <?php foreach ($product_list as $product){?>
+                   <option value="<?php echo $product->id;?>"><?php echo "Mumbai";?></option>
+                   <?php  }?>
+                </select>
+            </div>
           </div>
         </div>
       </div>
@@ -304,9 +313,9 @@ $("document").ready(function(){
               <div class="select">
                 <select  id="makeType" name="make_id" class="form-control">
                  <option value="0">Select Make</option>
-                  <?php foreach ($make_list as $make){?>
+                  <!-- <?php foreach ($make_list as $make){?>
                    <option value="<?php echo $make->id;?>"><?php echo $make->name;?></option>
-                   <?php  }?>
+                   <?php  }?> -->
                 </select>
               </div>
             </div>
@@ -314,9 +323,9 @@ $("document").ready(function(){
               <div class="select">
                 <select id='model_list' name="model_id" class="form-control">
                    <option value="0">Select Model</option>
-                  <?php foreach ($model_list as $model){?>
+                  <!-- <?php foreach ($model_list as $model){?>
                    <option value="<?php echo $model->id;?>"><?php echo $model->name;?></option>
-                   <?php  }?>
+                   <?php  }?> -->
                 </select>
               </div>
             </div>
