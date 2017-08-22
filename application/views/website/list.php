@@ -73,7 +73,12 @@
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
               </ul>
             </div>
-            <div class="login_btn"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
+            <div class="login_btn">  <select  id="city" name="city" class="form-control">
+                  <!-- <option value="0">Select city</option> -->
+                  <?php foreach ($product_list as $product){?>
+                   <option value="<?php echo $product->id;?>"><?php echo "Mumbai";?></option>
+                   <?php  }?>
+                </select></div>
           </div>
         </div>
       </div>
@@ -151,26 +156,65 @@
 <section class="listing-page">
   <div class="container">
     <div class="row">
-      <div class="col-md-9 col-md-push-3">
+      <div class="col-md-12 ">
         <div class="result-sorting-wrapper">
           <div class="sorting-count">
-            <p>1 - 8 <span>of 50 Listings</span></p>
-          </div>
-          <div class="result-sorting-by">
-            <p>Sort by:</p>
-            <form action="#" method="post">
+             <form action="<?php echo base_url()?>productList/search" method="post">
               <div class="form-group select sorting-select">
-                <select class="form-control ">
-                  <option>Price (low to high)</option>
-                  <option>$100 to $500</option>
-                  <option>$500 to $1000</option>
-                  <option>$1000 to $1500</option>
-                  <option>$1500 to $2000</option>
+                <select class="form-control" name="fuel">
+                   <?php foreach($fuel_type as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
                 </select>
-              </div>
-            </form>
+                </div>
+              
+          </div>
+           <div class="sorting-count">
+
+              <div class="form-group select sorting-select">
+                <select class="form-control" name='brand_id'>
+                  <option>Select Brand</option>
+                   <?php foreach($brand as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
+                </select>
+               </div>
+              
+          </div> 
+          <div class="sorting-count">
+
+              <div class="form-group select sorting-select">
+                <select class="form-control" name="ah_id">
+                  <option>Select AH</option>
+                  <?php foreach($ah as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
+                </select>
+               </div>
+              
+          </div> 
+          <div class="sorting-count">
+
+              <div class="form-group select sorting-select">
+                 <select class="form-control" name="warrenty_id">
+                  <option>Warrenty </option>
+                  <?php foreach($warrenty as $junk){?>
+                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
+                  <?php }?>
+                </select>
+               </div>
+              
+          </div> 
+          <div class="sorting-count">
+
+          <div class="form-group select sorting-select">
+                 <button type="submit" style="background: #fa2837;color: white"><i class="fa fa-search" aria-hidden="true"></i> Search Battery</button>
+              
           </div>
         </div>
+        </form>
+        </div>
+
         <?php if(empty($items)){?>
         <div class="alert alert-error">No Records Found</div>
         <?php }?>
@@ -188,7 +232,7 @@
                 <ul class="features_list">
                 <p style="font-size: 13px">
                 <b>With Old Battery:</b> Rs.<?php echo $junk->with_old_battery_mrp?></br>
-                <b>Without Old Battery:</b> Rs.<?php echo $junk->with_old_battery_mrp?></br>
+                <b>Without Old Battery:</b> Rs.<?php echo $junk->without_old_battery_mrp?></br>
                 <b>Warrenty:</b> <?php echo $junk->warrenty+$junk->prorata?> Months (<?php echo $junk->warrenty ?> Months Free + <?php echo $junk->prorata?> Montsh ProRata)
                 </p>
 
@@ -221,106 +265,6 @@
       </div>
       
       <!--Side-Bar-->
-      <aside class="col-md-3 col-md-pull-9">
-        <div class="sidebar_widget">
-          <div class="widget_heading">
-            <h5><i class="fa fa-filter" aria-hidden="true"></i> Find Your Battery </h5>
-          </div>
-          <div class="sidebar_filter">
-            <form action="<?php echo base_url()?>productList/search" method="post">
-              <div class="form-group select">
-              <input name="product_type_id" type="hidden" value="<?php echo $_POST['product_type_id'];?>">
-              <input name="make_id" type="hidden" value="<?php echo $_POST['make_id'];?>">
-              <input name="model_id" type="hidden" value="<?php echo $_POST['model_id'];?>">
-                <select class="form-control" name="fuel">
-                   <?php foreach($fuel_type as $junk){?>
-                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
-                  <?php }?>
-                </select>
-              </div>
-              <div class="form-group select">
-                <select class="form-control" name='brand_id'>
-                  <option>Select Brand</option>
-                   <?php foreach($brand as $junk){?>
-                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
-                  <?php }?>
-                </select>
-              </div>
-              <div class="form-group select">
-                <select class="form-control" name="ah_id">
-                  <option>Select AH</option>
-                  <?php foreach($ah as $junk){?>
-                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
-                  <?php }?>
-                </select>
-              </div>
-              <div class="form-group select" >
-                <select class="form-control" name="warrenty_id">
-                  <option>Warrenty </option>
-                  <?php foreach($warrenty as $junk){?>
-                  <option value="<?php echo $junk->id;?>"><?php echo $junk->name?></option>
-                  <?php }?>
-                </select>
-              </div>
-              <!-- 
-              <div class="form-group">
-                  <label class="form-label">Price Range ($)</label>
-                  <input id="price_range" type="text" class="span2" value="" data-slider-min="50" data-slider-max="6000" data-slider-step="5" data-slider-value="[1000,5000]"/>
-              </div> -->
-             <!--  <div class="form-group select">
-                <select class="form-control">
-                  <option>Type of Battery </option>
-                  <option>New Battery</option>
-                  <option>Used Battery</option>
-                </select>
-              </div> -->
-              <div class="form-group">
-                <button type="submit" class="btn btn-block"><i class="fa fa-search" aria-hidden="true"></i> Search Battery</button>
-              </div>
-            </form>
-          </div>
-        </div>
-         <div class="sidebar_widget sell_Battery_quote">
-          <div class="white-text div_zindex text-center">
-            <h3>Sell Your Battery</h3>
-            <p>Request a quote and sell your Battery now!</p>
-            <a href="#" class="btn">Request a Quote <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a> </div>
-          <div class="dark-overlay"></div>
-        </div> 
-        <!-- <div class="sidebar_widget">
-          <div class="widget_heading">
-            <h5><i class="fa fa-Battery" aria-hidden="true"></i> Recently Listed Batterys</h5>
-          </div>
-          <div class="recent_addedBatterys">
-            <ul>
-              <li class="gray-bg">
-                <div class="recent_post_img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/200x200.jpg" alt="image"></a> </div>
-                <div class="recent_post_title"> <a href="#">Recently Listed Battery Name</a>
-                  <p class="widget_price">$92,000</p>
-                </div>
-              </li>
-              <li class="gray-bg">
-                <div class="recent_post_img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/200x200.jpg" alt="image"></a> </div>
-                <div class="recent_post_title"> <a href="#">Recently Listed Battery Name</a>
-                  <p class="widget_price">$92,000</p>
-                </div>
-              </li>
-              <li class="gray-bg">
-                <div class="recent_post_img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/200x200.jpg" alt="image"></a> </div>
-                <div class="recent_post_title"> <a href="#">Recently Listed Battery Name</a>
-                  <p class="widget_price">$92,000</p>
-                </div>
-              </li>
-              <li class="gray-bg">
-                <div class="recent_post_img"> <a href="#"><img src="<?php echo base_url(); ?>assets/website/images/200x200.jpg" alt="image"></a> </div>
-                <div class="recent_post_title"> <a href="#">Recently Listed Battery Name </a>
-                  <p class="widget_price">$92,000</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div> -->
-      </aside>
       <!--/Side-Bar--> 
     </div>
   </div>
