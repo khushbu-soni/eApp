@@ -16,6 +16,25 @@ class product_model extends CI_Model{
         return $currency;
     }
 
+     function getModel($brand_id){
+         $modelData = $this->db->query("SELECT m.name FROM `items` i join model_master m on m.id=i.model_id WHERE brand_id=$brand_id")->result();
+
+         /*echo "<pre>";
+         print_r($currency);
+         exit();*/
+        return $modelData;
+    }
+    
+
+     function getBrandId($brand){
+         $modelData = $this->db->query("SELECT id FROM `brand_master`  WHERE name like '%".$brand."%'")->result();
+
+         /*echo "<pre>";
+         print_r($currency);
+         exit();*/
+        return $modelData;
+    }
+
     function getAllData(){
     $query = $this->db->query("SELECT img.id,img.name as image,im.id,sm.name as state, cm.name as city,pt.name as product_type,mm.name as make, mom.name as model, fm.name as fueltype,bm.name as brand,am.name as AH, wm.name as warrenty , pr.name as prorata,im.model_name,im.product_code,im.mrp,im.with_old_battery_mrp,im.without_old_battery_mrp,im.discount,im.description,im.key_benefits,im.key_features from items as im join
         
@@ -101,14 +120,24 @@ function getByFilter($data){
         prorata_master as pr on pr.id=prorata_id
        ";
     if(!empty($data)){
-
         $q.=" where ";
          if(!empty($data['product_type_id']))
             $q.=" im.product_type_id=".$data['product_type_id']." and";
-         if(!empty($data['make_id']) and $data['model_id']!="Select Make")
+         if(!empty($data['make_id']) or !empty($data['model_id']) )
+             if(!empty($data['model_id']) and $data['model_id']!="Select Model") 
            $q.=" im.make_id=".$data['make_id']." and";
-         if(!empty($data['model_id']) and $data['model_id']!="Select Model")
+         
+         if(!empty($data['model_id']) or !empty($data['model_id']))
+            if(!empty($data['model_id']) and $data['model_id']!="Select Model") 
              $q.=" im.model_id=".$data['model_id']." and";
+         
+         if (!empty($data['brand_id'])) {
+             $q.=" im.brand_id=".$data['brand_id']." and";
+         }
+
+         if (!empty($data['make'])) {
+             $q.=" im.make_id=".$data['make']." and";
+         }
              
     }
     // rtrim($q," and");

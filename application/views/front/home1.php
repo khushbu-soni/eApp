@@ -226,11 +226,9 @@ $("document").ready(function(){
             
           </li>
           <li><a href="<?php echo base_url()?>about">About Us</a></li>
-           <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop By Brands</a>
-            
-          </li>
+          <li><a href="<?php echo base_url(); ?>battery_brands">Shop By Brands</a></li>
+          <li><a href="<?php echo base_url(); ?>car_battries">Shop By Cars</a></li>
          
-           <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop By Cars</a>
             
           </li>
           <li class="dro1pdown"><a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">FAQ's</a>

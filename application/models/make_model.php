@@ -22,6 +22,12 @@ class make_model extends CI_Model{
         return $json;
     }
 
+    function getId($make){
+      $currency = $this->db->query("select id from make_master where name like '%".$make."%'")->row_array();
+         // $currency = $this->db->query("select * from category")->result_array();
+        return $currency;
+    }
+
     function getAllProductType(){
         $query = $this->db->select('id,name')
                     ->get("product_type");
@@ -36,6 +42,12 @@ class make_model extends CI_Model{
                     // echo  $this->db->last_query();
         $json = $query->result();
         return $json;
+    }
+
+     function getAllModelByMakeId($make_id){
+         $currency = $this->db->query("select make_id as id,name from model_master where make_id=$make_id")->result_array();
+         // $currency = $this->db->query("select * from category")->result_array();
+        return $currency;
     }
 
     function add($data){

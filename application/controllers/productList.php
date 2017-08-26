@@ -72,6 +72,19 @@ class ProductList extends BaseController
         $this->load->view('website/list',$this->data);
     }
 
+     public function get(){
+        $this->data['make_list']=$this->make_model->getAll();
+        $this->data['product_list']=$this->make_model->getAllProductType();
+        $this->data['model_list']=$this->make_model->getAllModel();
+        $this->data['items']=$this->product_model->getByFilter($_GET);
+        $this->data['brand']=$this->brand_model->get();
+        $this->data['ah']=$this->AH_model->get();
+        $this->data['fuel_type']=$this->fuel_type_model->get();
+        $this->data['warrenty']=$this->warrenty_model->get();
+        // print_r($this->data['items']);
+        $this->load->view('website/list',$this->data);
+    }
+
     // public function getAllMake(){
     //     $json = [];
     // $this->load->database();

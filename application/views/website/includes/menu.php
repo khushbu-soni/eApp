@@ -22,7 +22,7 @@
           </li> -->
           <li><a href="<?php echo base_url(); ?>">Home</a></li>
           <li><a href="#">About Us</a></li>
-          <li><a href="#">Shop By Battery Brands</a></li>
+          <li><a href="<?php echo base_url(); ?>/battery_brands">Shop By Battery Brands</a></li>
           <li><a href="#">Shop By Car Brands</a></li>
           <li><a href="#">FAQ's</a></li>
           <li><a href="#">Contact</a></li>
